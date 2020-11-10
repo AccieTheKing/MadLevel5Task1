@@ -1,4 +1,34 @@
 package com.example.madlevel5task1.database
 
-class NotepadRoomDatabase {
+import android.content.Context
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import com.example.madlevel5task1.dao.NoteDao
+
+abstract class NotepadRoomDatabase : RoomDatabase() {
+    abstract fun noteDao(): NoteDao
+
+    companion object {
+        private const val DATABASE_NAME = "NOTEPAD_DATABASE"
+
+        @Volatile
+        private var INSTANCE: NotepadRoomDatabase? = null
+
+        fun getDatabase(context: Context): NotepadRoomDatabase? {
+            if (INSTANCE == null) {
+                synchronized(NotepadRoomDatabase::class.java) {
+                    if (INSTANCE == null) {
+                        INSTANCE = Room.databaseBuilder(
+                            context.applicationContext,
+                            NotepadRoomDatabase::class.java, DATABASE_NAME
+                        )
+                            .fallbackToDestructiveMigration()
+                            .build()
+                    }
+                }
+            }
+            return INSTANCE
+        }
+
+    }
 }
