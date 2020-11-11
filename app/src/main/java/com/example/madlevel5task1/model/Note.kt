@@ -11,5 +11,5 @@ class Note(
     @ColumnInfo(name = "lastUpdated") var lastUpdated: Date,
     @ColumnInfo(name = "text") var noteText: String,
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id") var noteId: Long
+    @ColumnInfo(name = "id") var noteId: Long? = null
 )

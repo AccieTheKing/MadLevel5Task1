@@ -9,4 +9,7 @@
 
     <string name="my_notepad_title">My Notepad</string>
     <string name="last_updated_notepad">Last updated: %s</string>
+    <string name="lblTitle">Title</string>
+    <string name="lblNote">Note</string>
+    <string name="txtValueSave">Save</string>
 </resources>
